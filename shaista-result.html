@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shaista's Result</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+      input {
+        width: 80%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        padding: 0.5rem 1.5rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .message {
+        margin-top: 1rem;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      .error {
+        color: red;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="formContainer">
+      <h2>Check Result</h2>
+      <form id="resultForm">
+        <input
+          type="text"
+          id="nameInput"
+          placeholder="Enter your complete name"
+          autocomplete="off"
+        />
+        <button type="submit" id="submitBtn">Submit</button>
+      </form>
+      <div class="message" id="message"></div>
+    </div>
+
+    <div class="container hidden" id="resultContainer">
+      <div class="message">
+        Your marks (in objective + subjective) are <strong>124/139</strong>
+      </div>
+      <br />
+      <button onclick="goBack()">Go back</button>
+    </div>
+
+    <script>
+      const form = document.getElementById("resultForm");
+      const input = document.getElementById("nameInput");
+      const messageDiv = document.getElementById("message");
+      const formContainer = document.getElementById("formContainer");
+      const resultContainer = document.getElementById("resultContainer");
+
+      function checkResult() {
+        const name = input.value.trim();
+
+        if (name === "Shaista Naz") {
+          formContainer.classList.add("hidden");
+          resultContainer.classList.remove("hidden");
+        } else {
+          messageDiv.className = "message error";
+          messageDiv.textContent = "Please enter your complete name.";
+        }
+      }
+
+      function goBack() {
+        resultContainer.classList.add("hidden");
+        formContainer.classList.remove("hidden");
+        input.value = "";
+        messageDiv.textContent = "";
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        checkResult();
+      });
+
+      document
+        .getElementById("submitBtn")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          checkResult();
+        });
+    </script>
+  </body>
+</html>
