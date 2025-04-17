@@ -52,11 +52,49 @@
       .hidden {
         display: none;
       }
+      .link {
+        color: #007bff;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      .link:hover {
+        color: #0056b3;
+      }
+      .download-link {
+        margin-top: 1rem;
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      .download-link:hover {
+        background-color: #218838;
+      }
+      .mark-details {
+        margin-top: 1rem;
+      }
+      .extra-space {
+        margin-bottom: 8px;
+      }
+      .back-button {
+        margin-top: 1rem;
+        padding: 0.5rem 1.5rem;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .back-button:hover {
+        background-color: #c82333;
+      }
     </style>
   </head>
   <body>
     <div class="container" id="formContainer">
-      <h2>Check Result</h2>
+      <h2>Check your result!</h2>
       <form id="resultForm">
         <input
           type="text"
@@ -73,8 +111,34 @@
       <div class="message">
         Your marks (in objective + subjective) are <strong>124/139</strong>
       </div>
+      <div class="mark-details">
+        <span class="link" id="objectiveLink">See your marks in objective</span
+        ><br />
+        <div class="extra-space"></div>
+        <span class="link" id="subjectiveLink"
+          >See your marks in subjective</span
+        >
+      </div>
       <br />
-      <button onclick="goBack()">Go back</button>
+      <button onclick="goBack()" class="back-button">Go back</button>
+    </div>
+
+    <div class="container hidden" id="objectiveContainer">
+      <h2>Objective marks</h2>
+      <div class="message">Your objective marks: <strong>22/27</strong></div>
+      <a href="MARKED - Shaista's MCQs.pdf" class="download-link" download
+        >Download objective paper</a
+      ><br />
+      <button onclick="goBackToResult()" class="back-button">Go back</button>
+    </div>
+
+    <div class="container hidden" id="subjectiveContainer">
+      <h2>Subjective marks</h2>
+      <div class="message">Your subjective marks: <strong>102/112</strong></div>
+      <a href="MARKED - Subjective - Shaista.pdf" class="download-link" download
+        >Download subjective paper</a
+      ><br />
+      <button onclick="goBackToResult()" class="back-button">Go back</button>
     </div>
 
     <script>
@@ -83,6 +147,12 @@
       const messageDiv = document.getElementById("message");
       const formContainer = document.getElementById("formContainer");
       const resultContainer = document.getElementById("resultContainer");
+      const objectiveLink = document.getElementById("objectiveLink");
+      const subjectiveLink = document.getElementById("subjectiveLink");
+      const objectiveContainer = document.getElementById("objectiveContainer");
+      const subjectiveContainer = document.getElementById(
+        "subjectiveContainer"
+      );
 
       function checkResult() {
         const name = input.value.trim();
@@ -102,6 +172,22 @@
         input.value = "";
         messageDiv.textContent = "";
       }
+
+      function goBackToResult() {
+        objectiveContainer.classList.add("hidden");
+        subjectiveContainer.classList.add("hidden");
+        resultContainer.classList.remove("hidden");
+      }
+
+      objectiveLink.addEventListener("click", function () {
+        resultContainer.classList.add("hidden");
+        objectiveContainer.classList.remove("hidden");
+      });
+
+      subjectiveLink.addEventListener("click", function () {
+        resultContainer.classList.add("hidden");
+        subjectiveContainer.classList.remove("hidden");
+      });
 
       form.addEventListener("submit", function (event) {
         event.preventDefault();
