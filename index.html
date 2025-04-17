@@ -7,7 +7,7 @@
     <link rel="icon" href="result.png" type="image/png" />
     <style>
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: system-ui;
         font-size: 1.2rem;
         background: #f8f9fa;
         display: flex;
@@ -93,8 +93,15 @@
         background-color: #c82333;
       }
       .marks {
+        margin-top: 8px;
         display: block;
         font-size: 2rem;
+        font-weight: bold;
+      }
+      .marks-sec {
+        margin-top: 8px;
+        display: block;
+        font-size: 1.6rem;
         font-weight: bold;
       }
     </style>
@@ -133,7 +140,9 @@
 
     <div class="container hidden" id="objectiveContainer">
       <h2>Objective marks</h2>
-      <div class="message">Your objective marks: <strong>22/27</strong></div>
+      <div class="message">Your objective marks:
+        <div class="marks-sec">22/27</div>
+      </div>
       <a href="MARKED - Shaista's MCQs.pdf" class="download-link" download
         >Download objective paper</a
       ><br />
@@ -142,7 +151,9 @@
 
     <div class="container hidden" id="subjectiveContainer">
       <h2>Subjective marks</h2>
-      <div class="message">Your subjective marks: <strong>102/112</strong></div>
+      <div class="message">Your subjective marks:
+        <div class="marks-sec">102/112</div>
+      </div>
       <a href="MARKED - Subjective - Shaista.pdf" class="download-link" download
         >Download subjective paper</a
       ><br />
